@@ -39,6 +39,7 @@ models:
     title: string:400
     content: longtext
     published_at: nullable timestamp
+    user_id: id
 
 controllers:
   Post:
@@ -47,9 +48,9 @@ controllers:
       render: post.index with:posts
 
     store:
-      validate: title, content
+      validate: title, content, user_id
       save: post
-      send: ReviewNotification to:post.author with:post
+      send: ReviewPost to:post.user.email with:post
       dispatch: SyncMedia with:post
       fire: NewPost with:post
       flash: post.title
@@ -64,7 +65,7 @@ From these simple 20 lines of YAML, Blueprint will generate all of the following
 - A _controller_ class for `PostController` with `index` and `store` actions complete with code generated for each [statement](https://blueprint.laravelshift.com/docs/controller-statements/).
 - _Routes_ for the `PostController` actions.
 - A [_form request_](https://laravel.com/docs/validation#form-request-validation) of `StorePostRequest` validating `title` and `content` based on the `Post` model definition.
-- A _mailable_ class for `ReviewNotification` complete with a `post` property set through the _constructor_.
+- A _mailable_ class for `ReviewPost` complete with a `post` property set through the _constructor_.
 - A _job_ class for `SyncMedia` complete with a `post` property set through the _constructor_.
 - An _event_ class for `NewPost` complete with a `post` property set through the _constructor_.
 - A _Blade template_ of `post/index.blade.php` rendered by `PostController@index`.
