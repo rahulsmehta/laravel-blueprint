@@ -71,3 +71,8 @@ From these simple 20 lines of YAML, Blueprint will generate all of the following
 
 ## Documentation
 Browse the [Blueprint Docs](https://blueprint.laravelshift.com/) for full details on [defining models](https://blueprint.laravelshift.com/docs/defining-models/), [defining controllers](https://blueprint.laravelshift.com/docs/defining-controllers/), [advanced configuration](https://blueprint.laravelshift.com/docs/advanced-configuration/), and [extending Blueprint](https://blueprint.laravelshift.com/docs/extending-blueprint/).
+
+## Development
+
+### Running tests
+Run tests with `composer test`
